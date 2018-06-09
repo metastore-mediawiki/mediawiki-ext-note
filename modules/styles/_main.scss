@@ -1,0 +1,60 @@
+.mw-ext-note {
+	box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+	margin: 1em auto;
+	max-width: 80%;
+	.mw-ext-note {
+		&-body {
+			display: grid;
+			grid-template-columns: 5em 1fr;
+		}
+		&-icon {
+			display: grid;
+			align-items: center;
+			justify-items: center;
+			background: hsla(0, 0%, 0%, .03);
+			color: hsl(0, 0%, 86%);
+			font-size: 2em;
+			padding: .5em;
+			div {
+				text-align: center;
+			}
+		}
+		&-content {
+			padding: 1em;
+		}
+	}
+	/*
+	&-info {
+		.mw-ext-note {
+			&-icon {
+				background: hsl(204, 86%, 53%);
+				color: hsl(0, 0%, 100%);
+			}
+		}
+	}
+	&-important {
+		.mw-ext-note {
+			&-icon {
+				background: hsl(48, 100%, 67%);
+				color: hsl(0, 0%, 100%);
+			}
+		}
+	}
+	&-tip {
+		.mw-ext-note {
+			&-icon {
+				background: hsl(141, 71%, 48%);
+				color: hsl(0, 0%, 100%);
+			}
+		}
+	}
+	&-warning {
+		.mw-ext-note {
+			&-icon {
+				background: hsl(348, 100%, 61%);
+				color: hsl(0, 0%, 100%);
+			}
+		}
+	}
+	*/
+}

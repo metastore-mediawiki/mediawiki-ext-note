@@ -1,0 +1,49 @@
+{
+	"name": "MW_EXT_Note",
+	"version": "1.0.0",
+	"author": [
+		"[https://kitsune.solar/ Kitsune Solar]",
+		"[https://metastore.pro/ METASTORE]",
+		"..."
+	],
+	"url": "https://metastore.pro/",
+	"descriptionmsg": "mw-ext-note-desc",
+	"license-name": "[https://www.gnu.org/licenses/gpl-3.0.txt GPL-3.0]",
+	"type": "parserhook",
+	"require": {
+		"MediaWiki": ">= 1.30.0"
+	},
+	"AutoloadClasses": {
+		"MW_EXT_Note": "MW_EXT_Note.class.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"MW_EXT_Note::onParserFirstCallInit"
+		],
+		"BeforePageDisplay": [
+			"MW_EXT_Note::onBeforePageDisplay"
+		]
+	},
+	"MessagesDirs": {
+		"MW_EXT_Note": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"ext.mw.note.styles": {
+			"styles": [
+				"styles/theme.css"
+			],
+			"position": "top",
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "MW_EXT_Note/modules"
+	},
+	"manifest_version": 2
+}

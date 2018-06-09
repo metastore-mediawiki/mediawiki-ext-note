@@ -1,0 +1,20 @@
+{
+	"note": {
+		"info": {
+			"id": "info",
+			"icon": "fas fa-sticky-note"
+		},
+		"important": {
+			"id": "important",
+			"icon": "fas fa-exclamation-triangle"
+		},
+		"tip": {
+			"id": "tip",
+			"icon": "fas fa-lightbulb"
+		},
+		"warning": {
+			"id": "warning",
+			"icon": "fas fa-times-circle"
+		}
+	}
+}
