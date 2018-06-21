@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Extension\MW_EXT_Note;
+
+use OutputPage, Parser, PPFrame, Skin;
+
 /**
  * Class MW_EXT_Note
  * ------------------------------------------------------------------------------------------------------------------ */
-
 class MW_EXT_Note {
 
 	/**
@@ -116,7 +119,7 @@ class MW_EXT_Note {
 	 * @param Parser $parser
 	 *
 	 * @return bool
-	 * @throws MWException
+	 * @throws \MWException
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onParserFirstCallInit( Parser $parser ) {
@@ -133,7 +136,7 @@ class MW_EXT_Note {
 	 * @param Parser $parser
 	 * @param PPFrame $frame
 	 *
-	 * @return bool|string
+	 * @return null|string
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onRenderTag( $input, $args = [], Parser $parser, PPFrame $frame ) {
@@ -145,7 +148,7 @@ class MW_EXT_Note {
 		if ( ! self::getNote( $outType ) ) {
 			$parser->addTrackingCategory( 'mw-ext-note-error-category' );
 
-			return false;
+			return null;
 		}
 
 		// Get icon.
@@ -184,7 +187,7 @@ class MW_EXT_Note {
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		$out->addModuleStyles( array( 'ext.mw.note.styles' ) );
+		$out->addModuleStyles( [ 'ext.mw.note.styles' ] );
 
 		return true;
 	}
