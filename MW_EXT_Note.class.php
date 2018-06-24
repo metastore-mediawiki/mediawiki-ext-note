@@ -3,39 +3,12 @@
 namespace MediaWiki\Extension\MW_EXT_Note;
 
 use OutputPage, Parser, PPFrame, Skin;
+use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
 
 /**
  * Class MW_EXT_Note
  * ------------------------------------------------------------------------------------------------------------------ */
 class MW_EXT_Note {
-
-	/**
-	 * * Clear DATA (escape html).
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function clearData( $string ) {
-		$outString = htmlspecialchars( trim( $string ), ENT_QUOTES );
-
-		return $outString;
-	}
-
-	/**
-	 * Convert DATA (replace space & lower case).
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function convertData( $string ) {
-		$outString = mb_strtolower( str_replace( ' ', '-', $string ), 'UTF-8' );
-
-		return $outString;
-	}
 
 	/**
 	 * Get JSON data.
@@ -141,8 +114,8 @@ class MW_EXT_Note {
 
 	public static function onRenderTag( $input, $args = [], Parser $parser, PPFrame $frame ) {
 		// Argument: type.
-		$getType = self::clearData( $args['type'] ?? '' ?: '' );
-		$outType = self::convertData( $getType );
+		$getType = MW_EXT_Core::outClear( $args['type'] ?? '' ?: '' );
+		$outType = MW_EXT_Core::outConvert( $getType );
 
 		// Check note type, set error category.
 		if ( ! self::getNote( $outType ) ) {
@@ -168,8 +141,7 @@ class MW_EXT_Note {
 		$outHTML .= '<div class="mw-ext-note-body">';
 		$outHTML .= '<div class="mw-ext-note-icon"><div><i class="' . $outIcon . '"></i></div></div>';
 		$outHTML .= '<div class="mw-ext-note-content">' . $outContent . '</div>';
-		$outHTML .= '</div>';
-		$outHTML .= '</div>';
+		$outHTML .= '</div></div>';
 
 		// Out parser.
 		$outParser = $outHTML;
