@@ -137,7 +137,7 @@ class MW_EXT_Note {
 		$outContent = $parser->recursiveTagParse( $getContent, $frame );
 
 		// Out HTML.
-		$outHTML = '<div class="mw-ext-note mw-ext-note-' . $outID . '">';
+		$outHTML = '<div class="mw-ext-note mw-ext-note-' . $outID . ' navigation-not-searchable">';
 		$outHTML .= '<div class="mw-ext-note-body">';
 		$outHTML .= '<div class="mw-ext-note-icon"><div><i class="' . $outIcon . '"></i></div></div>';
 		$outHTML .= '<div class="mw-ext-note-content">' . $outContent . '</div>';
