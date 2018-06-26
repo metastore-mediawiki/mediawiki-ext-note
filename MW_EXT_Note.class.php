@@ -96,7 +96,7 @@ class MW_EXT_Note {
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onParserFirstCallInit( Parser $parser ) {
-		$parser->setHook( 'note', __CLASS__ . '::onRenderTag' );
+		$parser->setHook( 'note', [ __CLASS__, 'onRenderTag' ] );
 
 		return true;
 	}
@@ -140,7 +140,7 @@ class MW_EXT_Note {
 		$outHTML = '<div class="mw-ext-note mw-ext-note-' . $outID . ' navigation-not-searchable">';
 		$outHTML .= '<div class="mw-ext-note-body">';
 		$outHTML .= '<div class="mw-ext-note-icon"><div><i class="' . $outIcon . '"></i></div></div>';
-		$outHTML .= '<div class="mw-ext-note-content">' . $outContent . '</div>';
+		$outHTML .= '<div class="mw-ext-note-content">' . "\n\r" . $outContent . "\n\r" . '</div>';
 		$outHTML .= '</div></div>';
 
 		// Out parser.
