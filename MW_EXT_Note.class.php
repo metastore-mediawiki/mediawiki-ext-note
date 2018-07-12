@@ -115,7 +115,7 @@ class MW_EXT_Note {
 	public static function onRenderTag( $input, $args = [], Parser $parser, PPFrame $frame ) {
 		// Argument: type.
 		$getType = MW_EXT_Core::outClear( $args['type'] ?? '' ?: '' );
-		$outType = MW_EXT_Core::outConvert( $getType );
+		$outType = MW_EXT_Core::outNormalize( $getType );
 
 		// Check note type, set error category.
 		if ( ! self::getNote( $outType ) ) {
