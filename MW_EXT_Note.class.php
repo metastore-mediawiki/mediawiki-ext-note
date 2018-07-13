@@ -7,21 +7,8 @@ use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
 
 /**
  * Class MW_EXT_Note
- * ------------------------------------------------------------------------------------------------------------------ */
+ */
 class MW_EXT_Note {
-
-	/**
-	 * Get JSON data.
-	 *
-	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function getData() {
-		$getData = file_get_contents( __DIR__ . '/storage/note.json' );
-		$outData = json_decode( $getData, true );
-
-		return $outData;
-	}
 
 	/**
 	 * Get note.
@@ -29,10 +16,9 @@ class MW_EXT_Note {
 	 * @param $note
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getNote( $note ) {
-		$getData = self::getData();
+		$getData = MW_EXT_Core::getJSON( __DIR__ . '/storage/note.json' );
 
 		if ( ! isset( $getData['note'][ $note ] ) ) {
 			return false;
@@ -50,8 +36,7 @@ class MW_EXT_Note {
 	 * @param $note
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getNoteID( $note ) {
 		$note = self::getNote( $note ) ? self::getNote( $note ) : '';
 
@@ -71,8 +56,7 @@ class MW_EXT_Note {
 	 * @param $note
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getNoteIcon( $note ) {
 		$note = self::getNote( $note ) ? self::getNote( $note ) : '';
 
@@ -93,8 +77,7 @@ class MW_EXT_Note {
 	 *
 	 * @return bool
 	 * @throws \MWException
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setHook( 'note', [ __CLASS__, 'onRenderTag' ] );
 
@@ -110,8 +93,7 @@ class MW_EXT_Note {
 	 * @param PPFrame $frame
 	 *
 	 * @return null|string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onRenderTag( $input, $args = [], Parser $parser, PPFrame $frame ) {
 		// Argument: type.
 		$getType = MW_EXT_Core::outClear( $args['type'] ?? '' ?: '' );
@@ -156,8 +138,7 @@ class MW_EXT_Note {
 	 * @param Skin $skin
 	 *
 	 * @return bool
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$out->addModuleStyles( [ 'ext.mw.note.styles' ] );
 
