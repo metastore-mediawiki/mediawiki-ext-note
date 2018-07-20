@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\MW_EXT_Note;
 
 use OutputPage, Parser, PPFrame, Skin;
-use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
+use MediaWiki\Extension\MW_EXT_Kernel\MW_EXT_Kernel;
 
 /**
  * Class MW_EXT_Note
@@ -18,7 +18,7 @@ class MW_EXT_Note {
 	 * @return mixed
 	 */
 	private static function getNote( $note ) {
-		$getData = MW_EXT_Core::getJSON( __DIR__ . '/storage/note.json' );
+		$getData = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/note.json' );
 
 		if ( ! isset( $getData['note'][ $note ] ) ) {
 			return false;
@@ -96,8 +96,8 @@ class MW_EXT_Note {
 	 */
 	public static function onRenderTag( $input, $args = [], Parser $parser, PPFrame $frame ) {
 		// Argument: type.
-		$getType = MW_EXT_Core::outClear( $args['type'] ?? '' ?: '' );
-		$outType = MW_EXT_Core::outNormalize( $getType );
+		$getType = MW_EXT_Kernel::outClear( $args['type'] ?? '' ?: '' );
+		$outType = MW_EXT_Kernel::outNormalize( $getType );
 
 		// Check note type, set error category.
 		if ( ! self::getNote( $outType ) ) {
