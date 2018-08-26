@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\METADATA;
+namespace MediaWiki\Extension\MetaStore;
 
 use OutputPage, Parser, PPFrame, Skin;
 
@@ -12,61 +12,43 @@ class MW_EXT_Note {
 	/**
 	 * Get note.
 	 *
-	 * @param $note
+	 * @param $type
 	 *
-	 * @return mixed
+	 * @return array
 	 */
-	private static function getNote( $note ) {
-		$getData = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/note.json' );
+	private static function getNote( $type ) {
+		$get = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/note.json' );
+		$out = $get['note'][ $type ] ?? [] ?: [];
 
-		if ( ! isset( $getData['note'][ $note ] ) ) {
-			return false;
-		}
-
-		$getNote = $getData['note'][ $note ];
-		$outNote = $getNote;
-
-		return $outNote;
+		return $out;
 	}
 
 	/**
 	 * Get note ID.
 	 *
-	 * @param $note
+	 * @param $type
 	 *
-	 * @return mixed
+	 * @return mixed|string
 	 */
-	private static function getNoteID( $note ) {
-		$note = self::getNote( $note ) ? self::getNote( $note ) : '';
+	private static function getNoteID( $type ) {
+		$note = self::getNote( $type ) ? self::getNote( $type ) : '';
+		$out  = $note['id'] ?? '' ?: '';
 
-		if ( ! isset( $note['id'] ) ) {
-			return false;
-		}
-
-		$getID = $note['id'];
-		$outID = $getID;
-
-		return $outID;
+		return $out;
 	}
 
 	/**
 	 * Get note icon.
 	 *
-	 * @param $note
+	 * @param $type
 	 *
-	 * @return mixed
+	 * @return mixed|string
 	 */
-	private static function getNoteIcon( $note ) {
-		$note = self::getNote( $note ) ? self::getNote( $note ) : '';
+	private static function getNoteIcon( $type ) {
+		$note = self::getNote( $type ) ? self::getNote( $type ) : '';
+		$out  = $note['icon'] ?? '' ?: '';
 
-		if ( ! isset( $note['icon'] ) ) {
-			return false;
-		}
-
-		$getIcon = $note['icon'];
-		$outIcon = $getIcon;
-
-		return $outIcon;
+		return $out;
 	}
 
 	/**

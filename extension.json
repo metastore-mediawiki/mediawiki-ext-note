@@ -17,14 +17,14 @@
 		}
 	},
 	"AutoloadClasses": {
-		"MediaWiki\\Extension\\METADATA\\MW_EXT_Note": "MW_EXT_Note.class.php"
+		"MediaWiki\\Extension\\MetaStore\\MW_EXT_Note": "MW_EXT_Note.class.php"
 	},
 	"Hooks": {
 		"ParserFirstCallInit": [
-			"MediaWiki\\Extension\\METADATA\\MW_EXT_Note::onParserFirstCallInit"
+			"MediaWiki\\Extension\\MetaStore\\MW_EXT_Note::onParserFirstCallInit"
 		],
 		"BeforePageDisplay": [
-			"MediaWiki\\Extension\\METADATA\\MW_EXT_Note::onBeforePageDisplay"
+			"MediaWiki\\Extension\\MetaStore\\MW_EXT_Note::onBeforePageDisplay"
 		]
 	},
 	"MessagesDirs": {
