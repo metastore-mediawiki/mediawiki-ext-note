@@ -69,13 +69,13 @@ class MW_EXT_Note {
 	 * Render tag function.
 	 *
 	 * @param $input
-	 * @param array $args
 	 * @param Parser $parser
 	 * @param PPFrame $frame
+	 * @param array $args
 	 *
 	 * @return null|string
 	 */
-	public static function onRenderTag( $input, $args = [], Parser $parser, PPFrame $frame ) {
+	public static function onRenderTag( $input, Parser $parser, PPFrame $frame, $args = [] ) {
 		// Argument: type.
 		$getType = MW_EXT_Kernel::outClear( $args['type'] ?? '' ?: '' );
 		$outType = MW_EXT_Kernel::outNormalize( $getType );
