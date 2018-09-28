@@ -16,7 +16,7 @@ class MW_EXT_Note {
 	 *
 	 * @return array
 	 */
-	private static function getNote( $type ) {
+	private static function getData( $type ) {
 		$get = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/note.json' );
 		$out = $get['note'][ $type ] ?? [] ?: [];
 
@@ -30,8 +30,8 @@ class MW_EXT_Note {
 	 *
 	 * @return mixed|string
 	 */
-	private static function getNoteID( $type ) {
-		$note = self::getNote( $type ) ? self::getNote( $type ) : '';
+	private static function getID( $type ) {
+		$note = self::getData( $type ) ? self::getData( $type ) : '';
 		$out  = $note['id'] ?? '' ?: '';
 
 		return $out;
@@ -44,8 +44,8 @@ class MW_EXT_Note {
 	 *
 	 * @return mixed|string
 	 */
-	private static function getNoteIcon( $type ) {
-		$note = self::getNote( $type ) ? self::getNote( $type ) : '';
+	private static function getIcon( $type ) {
+		$note = self::getData( $type ) ? self::getData( $type ) : '';
 		$out  = $note['icon'] ?? '' ?: '';
 
 		return $out;
@@ -81,18 +81,18 @@ class MW_EXT_Note {
 		$outType = MW_EXT_Kernel::outNormalize( $getType );
 
 		// Check note type, set error category.
-		if ( ! self::getNote( $outType ) ) {
+		if ( ! self::getData( $outType ) ) {
 			$parser->addTrackingCategory( 'mw-ext-note-error-category' );
 
 			return null;
 		}
 
 		// Get icon.
-		$getIcon = self::getNoteIcon( $outType );
+		$getIcon = self::getIcon( $outType );
 		$outIcon = $getIcon;
 
 		// Get ID.
-		$getID = self::getNoteID( $outType );
+		$getID = self::getID( $outType );
 		$outID = $getID;
 
 		// Get content.
